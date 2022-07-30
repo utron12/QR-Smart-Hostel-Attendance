@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="stud.css" />
+    <title>IIITN Hostel</title>
+  </head>
+
+  <body style="overflow-x: hidden; overflow-y: hidden" onload="change()">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">IIITN Hostel</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="warden_register.html">Register Student</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="warden_unregister.html">Remove Student</a>
+            </li>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+    <br />
+    <br />
+    <script></script>
+    <div class="card" style="bottom: 10vh; right: 5vh">
+      <img
+        id="pic"
+        src=""
+        class="card-img-top"
+        alt=".."
+      />
+      <div class="card-body">
+        <h5 class="card-title" style="visibility: hidden;">Stuart</h5>
+      </div>
+    </div>
+
+    <div class="fcontainer" id="id_2">
+      <h4>Name</h4>
+      <p id="fname" style="font-size: 1rem">FirstName LastName</p>
+
+      <h4>Enrolment Number</h4>
+      <p id="btno" style="font-size: 1rem">BTYYBBBXXX</p>
+
+      <h4>Semester</h4>
+      <p id="sem" style="font-size: 1rem">XX</p>
+
+      <h4>Student's Number</h4>
+      <p id="per" style="font-size: 1rem">XXXXXXXXXX</p>
+
+      <h4>Parent's Number</h4>
+      <p id="par" style="font-size: 1rem">XXXXXXXXXX</p>
+
+      <h4>Room Number</h4>
+      <p id="room" style="font-size: 1rem">XXX</p>
+    </div>
+    <div id="id_3">
+      <button type="button" onclick="absent()" class="btn btn-danger btn-lg">Absent</button>
+      <button type="button" style="margin-left: 2vw;" onclick="present()" class="btn btn-success btn-lg">Present</button>
+      <h1 id="status" style="margin-left: -17vw; margin-top: 5vh; font-size: 3.5vh;"  ></h1>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+
+  <script>
+     var details; 
+    async function postName() {
+      const response = await fetch("http://127.0.0.1:8000/xender", {
+        method: "POST",
+        body: "",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      details = await response.json();
+      console.log(details);
+      var picx = document.getElementById("pic");
+      var hell = document.getElementById("fname");
+      var btno = document.getElementById("btno");
+      var sem = document.getElementById("sem");
+      var per = document.getElementById("per");
+      var par = document.getElementById("par");
+      var room = document.getElementById("room");
+
+      hell.innerHTML = details.name;
+      btno.innerHTML = details._id;
+      sem.innerHTML = details.semester;
+      per.innerHTML = details.personal;
+      par.innerHTML = details.parent;
+      room.innerHTML = details.room;
+      picx.src = details.link ;
+
+
+    }
+    postName();
+    function present()
+    {
+        var stat = document.getElementById("status");
+        var hell = document.getElementById("fname");
+
+        stat.innerHTML = hell.innerHTML + " marked present successfully!";
+        stat.style.color = "green";
+    }
+    function absent()
+    {
+        var stat = document.getElementById("status");
+        var hell = document.getElementById("fname");
+
+        stat.innerHTML = hell.innerHTML + " marked absent successfully!";
+        stat.style.color = "red";
+    }
+
+    function change() {
+      
+      
+    }
+  </script>
+</html>

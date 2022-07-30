@@ -1,0 +1,59 @@
+.card {
+    width: 20vw;
+    height: 20vw;
+
+    margin-top: -22vh;
+    margin-left: 10vw;
+    /* left: 4rem;
+    bottom: 1rem; */
+}
+
+.card-title {
+    text-align: center;
+    display: inherit;
+}
+
+.card-img-top {
+    display: inherit;
+    width: 20vw;
+    height: 20vw;
+
+}
+
+.fcontainer {
+    margin-left: 10vw;
+    margin-top: -3vh;
+}
+
+
+#id_3 {
+    position: relative;
+    left: 155vh;
+    bottom: 20vh;
+}
+
+
+
+/*#id_2{
+    position: relative;
+    left: 30rem;
+    bottom: 20rem;
+}*/
+
+@media screen and (min-width: 990px) {
+
+    .parent,
+    .card,
+    .fcontainer {
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    .parent,
+    .card,
+    .fcontainer {
+        display: block;
+    }
+}
